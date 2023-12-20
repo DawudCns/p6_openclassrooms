@@ -1,7 +1,7 @@
 /**********Variables générales**********/
 
 // 1. Récupérer l'élément DOM qui hébergera les œuvres
-const gallery = document.querySelector(".gallery");
+const mainGallery = document.querySelector(".gallery");
 // 1. Récupérer l'élément DOM qui hébergera les boutons de catégories
 const filter = document.querySelector(".filter");
 
@@ -40,7 +40,7 @@ getCategories();
  */
 
 // 3. fonction pour générer la galerie
-function generateWorks(work) {
+function generateWorks(work, targetGallery, showDeleteIcon = false) {
   // créer des éléments dédiés pour chaque œuvre
   const figure = document.createElement("figure");
   const img = document.createElement("img");
@@ -51,12 +51,33 @@ function generateWorks(work) {
   // ajouter le titre de l'œuvre à figcaption en tant que texte
   figcaption.innerText = work.title;
 
-  // ajouter chaque élément à son parent
-  figure.appendChild(img);
-  figure.appendChild(figcaption);
+  // si showDeleteIcon est true, ajouter l'icône de suppression à la figure
+  if (showDeleteIcon) {
+    // Créer une div conteneur pour contenir à la fois l'image et l'icône de suppression
+    const container = document.createElement("div");
+    container.classList.add("work-container");
 
-  // attacher la balise figure à la div galerie
-  gallery.appendChild(figure);
+    const deleteIcon = document.createElement("img");
+    deleteIcon.src = "assets/icons/modal-delete-icon.svg";
+    deleteIcon.alt = "Delete Icon";
+    deleteIcon.classList.add("modal-delete-icon");
+    deleteIcon.dataset.id = work.id;
+
+    // Ajouter l'image et l'icône de suppression au conteneur
+    container.appendChild(img);
+    container.appendChild(deleteIcon);
+
+    // Ajouter le conteneur et figcaption à la figure
+    figure.appendChild(container);
+    figure.appendChild(figcaption);
+  } else {
+    // si showDeleteIcon est false, ajouter simplement l'image et figcaption à la figure
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+  }
+
+  // Ajouter la figure à la galerie cible
+  targetGallery.appendChild(figure);
 }
 
 /**
@@ -87,15 +108,15 @@ function generateCategories(category) {
  */
 
 // 4. fonction pour afficher les oeuvres
-async function displayWorks() {
+export async function displayWorks(targetGallery, showDeleteIcon) {
   // stocker la réponse API http dans une constante au format JSON
   const works = await getWorks();
 
   works.forEach((work) => {
-    generateWorks(work);
+    generateWorks(work, targetGallery, showDeleteIcon);
   });
 }
-displayWorks();
+displayWorks(mainGallery);
 
 /**
  * @async afficher les catégories dans le DOM

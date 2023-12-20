@@ -13,9 +13,38 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/edit.css" />
-    <script src="./assets/js/index.js" defer></script>
+    <link rel="stylesheet" href="./assets/css/modal.css" />
+    <script type="module" src="./assets/js/index.js" defer></script>
+    <script type="module" src="./assets/js/modal.js" defer></script>
   </head>
   <body>
+    <!-- Section de la modal pour la modification de projets -->
+    <aside
+      id="modal1"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="modal-title"
+      style="display: none"
+    >
+      <div class="modal-wrapper stop-modal">
+        <div class="modal-content">
+          <!-- Bouton de fermeture de la modal -->
+          <img
+            src="assets/icons/vector.svg"
+            alt="icône croix pour fermer la fenêtre de la modale"
+            class="close-modal"
+          />
+          <!-- Titre de la modal -->
+          <h2 id="modal-title">Galerie photo</h2>
+          <!-- Galerie pour afficher les photos -->
+          <div class="modal-gallery"></div>
+          <hr />
+          <!-- Bouton pour ajouter une nouvelle photo -->
+          <button class="btn-add-project">Ajouter une photo</button>
+        </div>
+      </div>
+    </aside>
     <div class="edit-header">
       <div class="edit">
         <img src="./assets/icons/icon_white.png" alt="" />
@@ -61,8 +90,9 @@
         <div class="edit-portfolio">
           <h2>Mes Projets</h2>
           <div class="edit-project">
+            <!-- Icône et lien "Modifier" déclenchant l'ouverture de la modal -->
             <img src="./assets/icons/icon-black.png" alt="" />
-            <p class="modalLink modal-trigger">modifier</p>
+            <a href="#modal1" class="modal-trigger"> modifier </a>
           </div>
         </div>
         <div class="gallery">

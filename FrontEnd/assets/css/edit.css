@@ -20,7 +20,7 @@
 }
 
 .edit p {
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   font-weight: 400;
   font-size: 16px;
 }
@@ -51,9 +51,8 @@
   height: 17px;
 }
 
-.edit-project p {
+.edit-project a {
   margin: 0;
   text-decoration: none;
   color: #000;
-  cursor: pointer;
 }
