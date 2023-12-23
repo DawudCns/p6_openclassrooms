@@ -5,7 +5,7 @@ const loginForm = document.querySelector(".form .connection");
 
 /**********Fonction de connexion et d'authentification des utilisateurs**********/
 /**
- * @async Fonction pour connecter les utilisateurs
+ *
  */
 
 // 2. Fonction asynchrone pour gérer le processus de connexion
@@ -67,7 +67,7 @@ async function login() {
 }
 
 /**
- * @event submit soumission Appeler la fonction de connexion lors de la soumission du formulaire de connexion
+ *
  */
 
 // 14. attacher la fonction de connexion à l'événement de soumission du formulaire

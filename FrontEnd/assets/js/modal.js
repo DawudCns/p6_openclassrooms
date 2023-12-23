@@ -1,6 +1,7 @@
 // 1. importation de la fonction "displayWorks" du fichier index.js
 import { displayWorks } from "./index.js";
-
+// 1. importation de la fonction "deleProject" du fichier delete.js
+import { deleteProject } from "./delete.js";
 /********** 2. Afficher la fenêtre modale lors du clic sur le bouton "éditer" **********/
 
 const modalTriggers = document.querySelectorAll(".modal-trigger");
@@ -31,6 +32,9 @@ const openModal = async function (event) {
 
   // Afficher les œuvres dans la modal
   await displayWorks(modalGallery, true);
+
+  //delete works from the modal
+  deleteProject();
 
   // Afficher la modal
   modal.style.display = null;

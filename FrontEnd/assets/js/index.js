@@ -9,7 +9,7 @@ const filter = document.querySelector(".filter");
 
 /**
  *
- * @returns fonction qui récupère les œuvres depuis l'API
+ *
  */
 
 // 2. fonction pour récupérer la galerie depuis l'API
@@ -18,11 +18,9 @@ async function getWorks() {
   return await response.json();
 }
 
-getWorks();
-
 /**
  *
- * @returns fonction qui récupère les catégories depuis l'API
+ *
  */
 
 // 2. fonction pour récupérer les categories depuis l'API
@@ -31,12 +29,10 @@ async function getCategories() {
   return await response.json();
 }
 
-getCategories();
-
 /**********Fonctions pour générer la galerie et les catégories*******
 
 /**
- * @generator fonction pour générer des œuvres et les afficher sur le site web
+ * 
  */
 
 // 3. fonction pour générer la galerie
@@ -81,7 +77,7 @@ function generateWorks(work, targetGallery, showDeleteIcon = false) {
 }
 
 /**
- * @generator fonction pour générer des catégories et les afficher sur le site web
+ *
  */
 
 // 3. fonction pour générer les catégories
@@ -104,7 +100,7 @@ function generateCategories(category) {
 /**********Fonctions pour afficher les œuvres et les catégories**********/
 
 /**
- * @async afficher les œuvres dans le DOM
+ *
  */
 
 // 4. fonction pour afficher les oeuvres
@@ -119,7 +115,7 @@ export async function displayWorks(targetGallery, showDeleteIcon) {
 displayWorks(mainGallery);
 
 /**
- * @async afficher les catégories dans le DOM
+ *
  */
 
 // 4. fonction pour afficher les catégories
@@ -136,7 +132,7 @@ displayCategories();
 /*********fonction pour filtrer la galerie par catégorie de projet**********/
 
 /**
- * @event
+ *
  */
 
 // 5. fonction pour filter la galerie par catégorie de projet
@@ -161,10 +157,10 @@ async function filterCategories() {
           return work.categoryId == filterButtonId;
         });
         filteredWorks.forEach((work) => {
-          generateWorks(work);
+          generateWorks(work, mainGallery);
         });
       } else {
-        displayWorks();
+        displayWorks(mainGallery);
       }
     });
   });
