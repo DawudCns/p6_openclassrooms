@@ -24,7 +24,7 @@ async function getWorks() {
  */
 
 // 2. fonction pour récupérer les categories depuis l'API
-async function getCategories() {
+export async function getCategories() {
   const response = await fetch("http://localhost:5678/api/categories");
   return await response.json();
 }
@@ -108,6 +108,9 @@ export async function displayWorks(targetGallery, showDeleteIcon) {
   // stocker la réponse API http dans une constante au format JSON
   const works = await getWorks();
 
+  // Efface le contenu existant dans la galerie cible
+  targetGallery.innerHTML = "";
+
   works.forEach((work) => {
     generateWorks(work, targetGallery, showDeleteIcon);
   });
@@ -119,7 +122,7 @@ displayWorks(mainGallery);
  */
 
 // 4. fonction pour afficher les catégories
-async function displayCategories() {
+export async function displayCategories() {
   // stocker la réponse API http dans une constante au format JSON
   const categories = await getCategories();
 
@@ -149,7 +152,7 @@ async function filterCategories() {
       const filterButtonId = event.target.id;
 
       // supprimer toutes les œuvres dans la galerie à chaque bouton de filtre pour rafraîchir la page et la rendre interactive
-      gallery.innerHTML = "";
+      mainGallery.innerHTML = "";
 
       // logique pour les boutons de filtre
       if (filterButtonId !== "0") {

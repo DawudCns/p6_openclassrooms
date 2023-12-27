@@ -15,20 +15,20 @@ async function deleteWorks(event) {
   let id = event.target.dataset.id;
   console.log(id);
 
-  try {
-    // 3. Envoie une requête DELETE à l'API
-    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
-      method: "DELETE",
-      headers: {
-        Accept: "*/*",
-        Authorization: "Bearer " + localStorage.user,
-      },
-    });
+  // Affiche une confirmation de suppression
+  const confirmation = confirm("Voulez-vous vraiment supprimer ce projet?");
+  if (confirmation) {
+    try {
+      // 3. Envoie une requête DELETE à l'API
+      const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "*/*",
+          Authorization: "Bearer " + localStorage.user,
+        },
+      });
 
-    if (response.ok) {
-      // Affiche une confirmation de suppression
-      const confirmation = confirm("Voulez-vous vraiment supprimer ce projet?");
-      if (confirmation) {
+      if (response.ok) {
         // 4. Supprime l'élément parent de l'icône de suppression (l'ensemble du conteneur de travail)
         const workContainer = event.target.closest(".work-container");
         workContainer.remove();
@@ -36,19 +36,21 @@ async function deleteWorks(event) {
         // 5. Après la suppression, affiche les travaux mis à jour dans la galerie principale
         const mainGallery = document.querySelector(".gallery");
         displayWorks(mainGallery);
+      } else if (response.status === "401") {
+        // Alerte si la session a expiré et redirige vers la page de connexion
+        alert("Session expirée, merci de vous reconnecter");
+        document.location.href("login.html");
+      } else {
+        // Affiche une erreur en cas de problème avec la suppression
+        const errorData = await response.json();
+        console.error("Error deleting project:", errorData);
       }
-    } else if (response.status === "401") {
-      // Alerte si la session a expiré et redirige vers la page de connexion
-      alert("Session expirée, merci de vous reconnecter");
-      document.location.href("login.html");
-    } else {
-      // Affiche une erreur en cas de problème avec la suppression
-      const errorData = await response.json();
-      console.error("Error deleting project:", errorData);
+    } catch (error) {
+      // Affiche une erreur en cas d'échec de la requête DELETE
+      console.error("Error deleting project:", error);
     }
-  } catch (error) {
-    // Affiche une erreur en cas d'échec de la requête DELETE
-    console.error("Error deleting project:", error);
+  } else {
+    console.log("Suppression annulée");
   }
 }
 

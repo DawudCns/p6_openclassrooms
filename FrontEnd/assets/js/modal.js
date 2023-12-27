@@ -44,7 +44,9 @@ const openModal = async function (event) {
   modal.setAttribute("aria-modal", "true");
   // Fermer la modal au clic
   modal.addEventListener("click", closeModal);
-  modal.querySelector(".close-modal").addEventListener("click", closeModal);
+  modal
+    .querySelectorAll(".close-modal")
+    .forEach((close) => close.addEventListener("click", closeModal));
   modal.querySelector(".stop-modal").addEventListener("click", stopPropagation);
 };
 
@@ -71,11 +73,13 @@ const closeModal = function (event) {
   modal.removeAttribute("aria-modal");
   // Supprimer l'écouteur d'événements pour nettoyer entièrement la boîte modale
   modal.removeEventListener("click", closeModal);
-  modal.querySelector(".close-modal").removeEventListener("click", closeModal);
+  modal
+    .querySelectorAll(".close-modal")
+    .forEach((close) => close.addEventListener("click", closeModal));
   modal
     .querySelector(".stop-modal")
     .removeEventListener("click", stopPropagation);
-  // Une autre façon d'ajouter un délai et de gérer une animation plus longue
+  // autre façon d'ajouter un délai et de gérer une animation plus longue
   const hideModal = function () {
     // Cacher la modal
     modal.style.display = "none";

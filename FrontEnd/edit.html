@@ -17,9 +17,9 @@
     <script type="module" src="./assets/js/index.js" defer></script>
     <script type="module" src="./assets/js/modal.js" defer></script>
     <script type="module" src="./assets/js/delete.js" defer></script>
+    <script type="module" src="./assets/js/modal2.js" defer></script>
   </head>
   <body>
-    <!-- Section de la modal pour la modification de projets -->
     <aside
       id="modal1"
       class="modal"
@@ -30,19 +30,45 @@
     >
       <div class="modal-wrapper stop-modal">
         <div class="modal-content">
-          <!-- Bouton de fermeture de la modal -->
           <img
-            src="assets/icons/vector.svg"
+            src="assets/icons/close-modal.svg"
             alt="icône croix pour fermer la fenêtre de la modale"
             class="close-modal"
           />
-          <!-- Titre de la modal -->
-          <h2 id="modal-title">Galerie photo</h2>
-          <!-- Galerie pour afficher les photos -->
+          <h2 class="modal-title">Galerie photo</h2>
           <div class="modal-gallery"></div>
           <hr />
-          <!-- Bouton pour ajouter une nouvelle photo -->
           <button class="btn-add-project">Ajouter une photo</button>
+        </div>
+        <div class="modal-add-project">
+          <img
+            src="assets/icons/arrow-back.svg"
+            alt="Icône flèche retour"
+            class="modal-arrow"
+          />
+          <img
+            src="assets/icons/close-modal.svg"
+            alt="Icône croix pour fermer la modale"
+            class="close-modal"
+          />
+          <h2 class="modal-title">Ajout photo</h2>
+          <form class="modal-upload-image-form">
+            <label for="file" class="modal-add-image-form">
+              <img src="assets/icons/add-image.svg" alt="" />
+              <span class="modal-add-image-button">+ Ajouter photo</span>
+              <span class="modal-image-format">jpg, png: 4mo max</span>
+            </label>
+            <label for="modal-title-image">Titre</label>
+            <input
+              type="text"
+              id="modal-title-image"
+              name="modal-title-image"
+            />
+            <label for="modal-categories">Catégories</label>
+            <select name="modal-categories" id="modal-categories"></select>
+            <hr />
+            <button class="modal-form-confirm-button" disabled>Valider</button>
+          </form>
         </div>
       </div>
     </aside>
@@ -91,13 +117,12 @@
         <div class="edit-portfolio">
           <h2>Mes Projets</h2>
           <div class="edit-project">
-            <!-- Icône et lien "Modifier" déclenchant l'ouverture de la modal -->
             <img src="./assets/icons/icon-black.png" alt="" />
             <a href="#modal1" class="modal-trigger"> modifier </a>
           </div>
         </div>
         <div class="gallery">
-          <!-- Les balises figure seront remplacées dynamiquement par des données récupérées depuis l'API HTTP -->
+          <!-- Supprimé toutes les balises figure pour les remplacer par des données récupérées dynamiquement depuis l'API HTTP -->
         </div>
       </section>
       <section id="contact">
