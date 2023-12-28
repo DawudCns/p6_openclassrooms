@@ -96,29 +96,6 @@ const stopPropagation = function (event) {
   event.stopPropagation();
 };
 
-// 7. Fonction pour piéger le focus de l'utilisateur dans la boîte modale lorsqu'il appuie sur la touche 'Tab'
-const focusInModal = function (event) {
-  event.preventDefault();
-  // Trouver l'index relatif à l'élément actuellement sélectionné pour naviguer vers l'élément suivant lorsque 'Tab' est pressé
-  let index = focusables.findIndex((f) => f === modal.querySelector(":focus"));
-  if (event.shiftKey === true) {
-    index--;
-  } else {
-    index++;
-  }
-
-  // Retourner à l'index 0 lorsqu'on atteint le dernier élément
-  if (index >= focusables.length) {
-    index = 0;
-  }
-  // Éviter un index négatif pour boucler à l'intérieur de la modal
-  if (index < 0) {
-    index = focusables.length - 1;
-  }
-  // Récupérer tous les éléments sélectionnables, trouver l'élément au niveau de l'index spécifié et appliquer la méthode focus pour le mettre automatiquement en focus
-  focusables[index].focus();
-};
-
 // 8. Ouvrir la modal au clic sur le lien d'édition
 modalTriggers.forEach((trigger) => {
   trigger.addEventListener("click", openModal);
