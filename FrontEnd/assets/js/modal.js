@@ -108,6 +108,5 @@ window.addEventListener("keydown", function (event) {
   }
   // Piéger le focus de l'utilisateur dans la boîte modale
   if (event.key === "Tab" && modal !== null) {
-    focusInModal(event);
   }
 });
