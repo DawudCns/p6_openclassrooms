@@ -43,11 +43,11 @@ async function deleteWorks(event) {
       } else {
         // Affiche une erreur en cas de problème avec la suppression
         const errorData = await response.json();
-        console.error("Error deleting project:", errorData);
+        console.error("Erreur dans la supression d'un projet:", errorData);
       }
     } catch (error) {
       // Affiche une erreur en cas d'échec de la requête DELETE
-      console.error("Error deleting project:", error);
+      console.error("Erreur dans la supression d'un projet:", error);
     }
   } else {
     console.log("Suppression annulée");
