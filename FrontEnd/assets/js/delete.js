@@ -43,7 +43,7 @@ async function deleteWorks(event) {
       } else {
         // Affiche une erreur en cas de problème avec la suppression
         const errorData = await response.json();
-        console.error("Erreur dans la supression d'un projet:", errorData);
+        console.error("Erreur dans la suppression d'un projet:", errorData);
       }
     } catch (error) {
       // Affiche une erreur en cas d'échec de la requête DELETE
