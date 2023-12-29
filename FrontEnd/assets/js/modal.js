@@ -2,6 +2,8 @@
 import { displayWorks } from "./index.js";
 // 1. importation de la fonction "deleProject" du fichier delete.js
 import { deleteProject } from "./delete.js";
+
+import { firstModal } from "./modal2.js";
 /********** 2. Afficher la fenêtre modale lors du clic sur le bouton "éditer" **********/
 
 const modalTriggers = document.querySelectorAll(".modal-trigger");
@@ -89,6 +91,10 @@ const closeModal = function (event) {
     modal = null;
   };
   modal.addEventListener("animationend", hideModal);
+
+  window.setTimeout(function () {
+    firstModal();
+  }, 500); //compte a rebourd pour pas voir la premiere modale apparaitre
 };
 
 // 6. Fonction pour empêcher la fermeture de la boîte modale lors du clic dessus

@@ -1,5 +1,6 @@
 // Import de la fonction getCategories depuis le fichier index.js
 import { getCategories } from "./index.js";
+import { deleteProject } from "./delete.js";
 
 /**********Constantes globales**********/
 
@@ -26,10 +27,12 @@ const inputTitle = document.getElementById("modal-title-image"); // Champ de sai
 const imgElement = document.createElement("img"); // Élément image pour prévisualiser l'image
 imgElement.classList.add("img-uploaded"); // Ajout de classe pour le style
 
+const mainGallery = document.querySelector(".gallery");
+const modalGallery = document.querySelector(".modal-gallery");
 /**********Fonctions pour passer entre la première et la deuxième modale**********/
 
 // Fonction pour afficher la première modal et cacher la deuxième modal
-function firstModal() {
+export function firstModal() {
   firstModalContainer.style.display = "block";
   secondModalContainer.style.display = "none";
   resetForm();
@@ -183,13 +186,26 @@ async function addProject(event) {
       const responseData = await response.json();
 
       console.log(responseData);
-    } else {
+
+      await displayWorks(modalGallery, true);
+
+      await displayWorks(mainGallery);
+
+      // Permet de suprimmer des projet apres avoir ajouter des projets
+      deleteProject();
+
+      resetForm();
+      firstModal();
+    } else if (res.status === "401") {
       // Si réussi, parser les données de réponse en JSON
       console.error(
         "Échec d'ajout du projet. Le serveur a renvoyé une erreur:",
         response.status,
         response.statusText
       );
+
+      alert("Session expirée, merci de vous reconnecter");
+      document.location.href = "login.html";
     }
   } catch (error) {
     // Si une erreur se produit pendant la requête
