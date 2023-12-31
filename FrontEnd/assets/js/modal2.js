@@ -1,6 +1,9 @@
 // Import de la fonction getCategories depuis le fichier index.js
 import { getCategories } from "./index.js";
+//Import de la fonction deleteProject depuis le fichier delete.js
 import { deleteProject } from "./delete.js";
+//Import de la fonction displayWorks depuis le fichier index.js
+import { displayWorks } from "./index.js";
 
 /**********Constantes globales**********/
 

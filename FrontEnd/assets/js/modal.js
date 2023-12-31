@@ -2,7 +2,7 @@
 import { displayWorks } from "./index.js";
 // 1. importation de la fonction "deleProject" du fichier delete.js
 import { deleteProject } from "./delete.js";
-
+// 1. importation de la fonction "firstModal" du fichier modal2.js
 import { firstModal } from "./modal2.js";
 /********** 2. Afficher la fenêtre modale lors du clic sur le bouton "éditer" **********/
 
